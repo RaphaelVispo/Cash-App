@@ -1,5 +1,10 @@
 
 
+create-admin:
+	echo 'Creating user'
+	sudo mysql < scripts/create-admin.sql
+	echo 'Creating '
+
 create-database: 
 	echo 'Creating the database...'
 	sudo mysql  < scripts/create-database.sql
