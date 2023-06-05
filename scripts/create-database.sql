@@ -23,20 +23,16 @@ CONSTRAINT user_has_group_expense_pk PRIMARY KEY (user_id, group_id, expense_id)
 
 CREATE TABLE HAS_GROUP (
 	group_id VARCHAR (22) NOT NULL,
-	number_of_users INT (4),
 	group_name VARCHAR (30),
 	CONSTRAINT group_group_id_pk PRIMARY KEY (group_id)
 );
 
 CREATE TABLE EXPENSE (
 	expense_id VARCHAR (22) NOT NULL,
-	Expense_name VARCHAR (50) NOT NULL,
 	creditor VARCHAR (22),
 	amount INT (10),
 	is_settled BOOLEAN,
-	group_id VARCHAR (10) NOT NULL,
 	expense_date DATE,
 
-	CONSTRAINT expense_expense_id_pk PRIMARY KEY (expense_id),
-	CONSTRAINT expense_group_id_fk FOREIGN KEY (group_id) REFERENCES HAS_GROUP(group_id)
+	CONSTRAINT expense_expense_id_pk PRIMARY KEY (expense_id)
 );
