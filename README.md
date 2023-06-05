@@ -2,7 +2,7 @@
 Hello! This is a Cash App clone! 
 
 ## Running the script
-1. Installation of python or creating an environment
+1. Installation of `python (v.3.9)` or creating an environment
 2. Installing the requirements
 ```
 pip install -r ./requirements.txt
@@ -11,7 +11,7 @@ pip install -r ./requirements.txt
 ``` bash
 $ make create-database
 $ make populate-database
-$ make craete-admin
+$ make create-admin`3.9`)
 ```
 4. Accessing the database
 ``` bash
