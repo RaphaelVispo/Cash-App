@@ -1,3 +1,5 @@
 .venv/
 
 .env
+
+scripts/populate-tables-test.ipynb

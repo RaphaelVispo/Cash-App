@@ -1,7 +1,11 @@
 # CASH APP
 Hello! This is a Cash App clone! 
 
-## Running the script
+# Remote Database
+The remote database uses the the remote database using railway app
+
+# Local Database
+The local database uses the scripts to generate the new database and populating it.
 1. Installation of `python (v.3.9)` or creating an environment
 2. Installing the requirements
 ```
@@ -11,14 +15,14 @@ pip install -r ./requirements.txt
 ``` bash
 $ make create-database
 $ make populate-database
-$ make create-admin`3.9`)
+$ make create-admin
 ```
 4. Accessing the database
 ``` bash
 $ mysql -uadmin -padmin --database=127project
 ```
 
-### Makefile 
+## Makefile 
 The make file automate the development of the database
 ```
 |_ make create-database
