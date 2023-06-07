@@ -55,7 +55,7 @@ def get_total_paid_expenses():
 
             ''', header)
 
-    print_table(table, header)
+    print_table(table, header, False)
 
 
 
@@ -73,7 +73,7 @@ def get_total_unpaid_expenses():
 
             ''', header)
 
-    print_table(table, header)
+    print_table(table, header, False)
 
 def get_total_expenses():
     
@@ -89,4 +89,4 @@ def get_total_expenses():
 
             ''', header)
 
-    print_table(table, header)
+    print_table(table, header, False)

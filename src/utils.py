@@ -21,10 +21,10 @@ except mariadb.Error as e:
 # Get Cursor
 cur = conn.cursor()
 
-def print_table(data, header):
+def print_table(data, header, is_indexed = True):
     tt.print(
-        list(data.itertuples()),
-        header=["Index"]+ header,
+        list(data.itertuples(index=is_indexed)),
+        header=["Index"]+ header if is_indexed else header,
         padding=(0, 2)
     )  
 
