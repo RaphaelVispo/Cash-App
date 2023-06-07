@@ -10,8 +10,6 @@ load_dotenv()
 
 # Connect to MariaDB Platform
 try:
-    print(type(os.getenv("USERNAMEDB", default=None)))
-    print(int(os.getenv("PORTDB", default=None)))
 
     conn = mariadb.connect(
         user=os.getenv("USERNAMEDB", default=None),
