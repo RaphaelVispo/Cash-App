@@ -19,3 +19,6 @@ populate-database:
 	echo 'Populating the tables ...'
 	python scripts/local/populate-database.py
 	echo 'Populating the tables: DONE !!'
+
+run:
+	python src/main.py

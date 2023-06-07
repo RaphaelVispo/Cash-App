@@ -1,20 +1,13 @@
 """
 This file will be the main flow of the program
 """
+from expense import *
 
-# Connect to MariaDB Platform
-try:
-    conn = mariadb.connect(
-        user="root",
-        password="AXOYu0mzs8vWyMGTBPLl",
-        host='containers-us-west-16.railway.app',
-        port=5604,
-        database="railway"
+import shortuuid
+import names
+import mariadb
+import sys
+import pandas as pd
 
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
-    sys.exit(1)
 
-# Get Cursor
-cur = conn.cursor()
+get_unpaid_expenses()
