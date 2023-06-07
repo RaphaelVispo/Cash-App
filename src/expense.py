@@ -39,3 +39,54 @@ def get_paid_expenses():
             ''', header)
 
     print_table(table, header)
+
+
+def get_total_paid_expenses():
+    
+    header  = ["Total"]
+    
+    table = get_table(f'''
+    SELECT SUM(amount) total
+        FROM USER_HAS_GROUP_EXPENSE a 
+        NATURAL JOIN HAS_GROUP 
+        NATURAL JOIN  EXPENSE e 
+        JOIN USER u ON e.creditor=u.user_id 
+        WHERE a.user_id =  \'{user}\' AND e.is_settled=1;
+
+            ''', header)
+
+    print_table(table, header)
+
+
+
+def get_total_unpaid_expenses():
+    
+    header  = ["Total"]
+    
+    table = get_table(f'''
+    SELECT SUM(amount) total
+        FROM USER_HAS_GROUP_EXPENSE a 
+        NATURAL JOIN HAS_GROUP 
+        NATURAL JOIN  EXPENSE e 
+        JOIN USER u ON e.creditor=u.user_id 
+        WHERE a.user_id =  \'{user}\' AND e.is_settled=0;
+
+            ''', header)
+
+    print_table(table, header)
+
+def get_total_expenses():
+    
+    header  = ["Total"]
+    
+    table = get_table(f'''
+    SELECT SUM(amount) total
+        FROM USER_HAS_GROUP_EXPENSE a 
+        NATURAL JOIN HAS_GROUP 
+        NATURAL JOIN  EXPENSE e 
+        JOIN USER u ON e.creditor=u.user_id 
+        WHERE a.user_id =  \'{user}\' 
+
+            ''', header)
+
+    print_table(table, header)
