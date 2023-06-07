@@ -10,7 +10,7 @@ pip install -r ./requirements.txt
 ```
 
 ## Remote Database
-The remote database uses the the remote database using railway app. 
+The remote database uses the the remote database using railway app. Thus, only needed to run the main app
 
 3. Running the app
 ``` bash
@@ -19,6 +19,8 @@ make run
 
 ## Local Database
 The local database uses the scripts to generate the new database and populating it.
+
+3. Populating the database
 ``` bash
 make create-database
 make populate-database
