@@ -1,4 +1,5 @@
-
+from utils import *
+user = "3xyaufSzzUp9LPkSKTxhqz"
 
 def get_groups():
     header  = ["group_id", "expense_id", "name"]
