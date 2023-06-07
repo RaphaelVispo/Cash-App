@@ -5,14 +5,15 @@ Hello! This is a Cash App clone!
 In running the app is separated by the remote and local database. But first installing the environment and the requirements
 1. Installation of `python (v.3.9)` or creating an environment
 2. Installing the requirements
-```
+```bash
 pip install -r ./requirements.txt
 ```
+3. Also get the `.env` in the root directory of the file
 
 ## Remote Database
 The remote database uses the the remote database using railway app. Thus, only needed to run the main app
 
-3. Running the app
+4. Running the app
 ``` bash
 make run
 ```
@@ -20,17 +21,17 @@ make run
 ## Local Database
 The local database uses the scripts to generate the new database and populating it.
 
-3. Populating the database
+4. Populating the database
 ``` bash
 make create-database
 make populate-database
 make create-admin
 ```
-4. Accessing the database
+5. Accessing the database
 ``` bash
 mysql -uadmin -padmin --database=127project
 ```
-5. Running the main app
+6. Running the main app
 ```
 make run
 ```
