@@ -3,15 +3,22 @@ import numpy
 import sys
 import pandas as pd
 import mariadb
+import os
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 # Connect to MariaDB Platform
 try:
+    print(type(os.getenv("USERNAMEDB", default=None)))
+    print(int(os.getenv("PORTDB", default=None)))
+
     conn = mariadb.connect(
-        user="root",
-        password="AXOYu0mzs8vWyMGTBPLl",
-        host='containers-us-west-16.railway.app',
-        port=5604,
-        database="railway"
+        user=os.getenv("USERNAMEDB", default=None),
+        password=os.getenv("PASSWORDDB", default=None),
+        host=os.getenv("HOSTDB", default=None),
+        port=int(os.getenv("PORTDB", default=None)),
+        database=os.getenv("DATABASE", default=None)
 
     )
 except mariadb.Error as e:
