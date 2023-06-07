@@ -2,6 +2,8 @@
 
 .env
 
+__pycache__/
+
 /src/.ipynb_checkpoints
 /scripts/.ipynb_checkpoints
 scripts/populate-tables-test.ipynb
