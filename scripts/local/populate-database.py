@@ -74,7 +74,7 @@ for user_id in df_user_id:
         p = random.sample(df_user_id, samples) # getting the random debtors
           
         amount = random.randrange(100,1000)
-        group_name =  INDICATOR.NULL if bool(random.getrandbits(1)) else  'Group {}'.format(groupno) # if (randombool) return null else group no.
+        group_name ='Group {}'.format(groupno) #group no.
         groupno+=1
         
         # INSERT HAS_GROUP
