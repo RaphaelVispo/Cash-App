@@ -1,9 +1,7 @@
 from utils import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
 
-
-def get_username():
+def get_username(user):
     header = ["name"]
 
     table = get_table(

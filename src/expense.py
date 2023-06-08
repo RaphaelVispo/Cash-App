@@ -1,9 +1,7 @@
 from utils import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
 
-
-def get_unpaid_expenses():
+def get_unpaid_expenses(user):
 
     header = ["Group_name", "Amount", "Creditor Name ", "Date"]
 
@@ -23,7 +21,7 @@ def get_unpaid_expenses():
     print_table(table, header)
 
 
-def get_paid_expenses():
+def get_paid_expenses(user):
 
     header = ["Group_name", "Amount", "Creditor Name ", "Date"]
 
@@ -43,7 +41,7 @@ def get_paid_expenses():
     print_table(table, header)
 
 
-def get_total_paid_expenses():
+def get_total_paid_expenses(user):
 
     header = ["Total"]
 
@@ -61,7 +59,7 @@ def get_total_paid_expenses():
     print_table(table, header, False)
 
 
-def get_total_unpaid_expenses():
+def get_total_unpaid_expenses(user):
 
     header = ["Total"]
 
@@ -79,7 +77,7 @@ def get_total_unpaid_expenses():
     print_table(table, header, False)
 
 
-def get_total_expenses():
+def get_total_expenses(user):
 
     header = ["Total"]
 

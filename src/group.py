@@ -1,9 +1,7 @@
 from utils import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
 
-
-def get_groups():
+def get_groups(user):
     header = ["group_id", "expense_id", "name"]
 
     table = get_table(
@@ -11,7 +9,7 @@ def get_groups():
         SELECT group_id, expense_id, group_name  
         FROM USER_HAS_GROUP_EXPENSE 
         NATURAL JOIN HAS_GROUP  
-        WHERE user_id =  '3xyaufSzzUp9LPkSKTxhqz';
+        WHERE user_id =  \'{user}\';
             ''', header)
 
     print_table(table, header)
