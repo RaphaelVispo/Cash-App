@@ -22,3 +22,6 @@ populate-database:
 
 run:
 	python src/main.py
+
+clean:
+	yapf -i ./src/*.py

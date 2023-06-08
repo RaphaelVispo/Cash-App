@@ -2,11 +2,9 @@
 This file will be the main flow of the program
 """
 from expense import *
-from group import * 
+from group import *
 from user import *
 from friends import *
-
-
 
 get_unpaid_expenses()
 get_paid_expenses()

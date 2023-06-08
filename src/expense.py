@@ -1,13 +1,14 @@
 from utils import *
 
-
 user = "3xyaufSzzUp9LPkSKTxhqz"
 
+
 def get_unpaid_expenses():
-    
-    header  = [ "Group_name", "Amount" , "Creditor Name ","Date"]
-    
-    table = get_table(f'''
+
+    header = ["Group_name", "Amount", "Creditor Name ", "Date"]
+
+    table = get_table(
+        f'''
     SELECT group_name, CONCAT("P ", amount) ,u.user_name creditor_name ,  CASE
         WHEN DATEDIFF(CURDATE(),  e.expense_date )<10 THEN DATE_FORMAT( expense_date, '%W, %M %d %Y')
         ELSE DATE_FORMAT( expense_date, '%M %Y') END AS Date
@@ -23,10 +24,11 @@ def get_unpaid_expenses():
 
 
 def get_paid_expenses():
-    
-    header  = [ "Group_name", "Amount" , "Creditor Name ","Date"]
-    
-    table = get_table(f'''
+
+    header = ["Group_name", "Amount", "Creditor Name ", "Date"]
+
+    table = get_table(
+        f'''
     SELECT group_name, CONCAT("P ", amount) ,u.user_name creditor_name ,  CASE
         WHEN DATEDIFF(CURDATE(),  e.expense_date )<10 THEN DATE_FORMAT( expense_date, '%W, %M %d %Y')
         ELSE DATE_FORMAT( expense_date, '%M %Y') END AS Date
@@ -42,10 +44,11 @@ def get_paid_expenses():
 
 
 def get_total_paid_expenses():
-    
-    header  = ["Total"]
-    
-    table = get_table(f'''
+
+    header = ["Total"]
+
+    table = get_table(
+        f'''
     SELECT SUM(amount) total
         FROM USER_HAS_GROUP_EXPENSE a 
         NATURAL JOIN HAS_GROUP 
@@ -58,12 +61,12 @@ def get_total_paid_expenses():
     print_table(table, header, False)
 
 
-
 def get_total_unpaid_expenses():
-    
-    header  = ["Total"]
-    
-    table = get_table(f'''
+
+    header = ["Total"]
+
+    table = get_table(
+        f'''
     SELECT SUM(amount) total
         FROM USER_HAS_GROUP_EXPENSE a 
         NATURAL JOIN HAS_GROUP 
@@ -75,11 +78,13 @@ def get_total_unpaid_expenses():
 
     print_table(table, header, False)
 
+
 def get_total_expenses():
-    
-    header  = ["Total"]
-    
-    table = get_table(f'''
+
+    header = ["Total"]
+
+    table = get_table(
+        f'''
     SELECT SUM(amount) total
         FROM USER_HAS_GROUP_EXPENSE a 
         NATURAL JOIN HAS_GROUP 

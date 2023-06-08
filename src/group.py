@@ -1,10 +1,13 @@
 from utils import *
+
 user = "3xyaufSzzUp9LPkSKTxhqz"
 
+
 def get_groups():
-    header  = ["group_id", "expense_id", "name"]
-    
-    table = get_table(f'''
+    header = ["group_id", "expense_id", "name"]
+
+    table = get_table(
+        f'''
         SELECT group_id, expense_id, group_name  
         FROM USER_HAS_GROUP_EXPENSE 
         NATURAL JOIN HAS_GROUP  
