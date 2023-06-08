@@ -39,26 +39,7 @@ def get_friends(user):
     return table
 
 
-def choice(upper):
-    """
-    choice 
-        gets the user's input if the condition is true, else 
-        it will loop over until the user provide the correct choice
 
-    params:
-        upper - the upper limit of the choice
-    
-    return:
-        choice - the choice of the user
-
-    """
-    while True:
-        choice = int(input("Choice: "))
-
-        if choice >= 0 and choice < upper:
-            return choice
-
-        print("Invalid choice")
 
 
 def search_friend(user):

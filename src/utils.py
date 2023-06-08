@@ -64,3 +64,24 @@ def print_msg_box(msg, indent=20, width=None, title=None):
     box += f'╚{"═" * (width + indent * 2)}╝'  # lower_border
     print(box)
 
+
+def choice(upper):
+    """
+    choice 
+        gets the user's input if the condition is true, else 
+        it will loop over until the user provide the correct choice
+
+    params:
+        upper - the upper limit of the choice
+    
+    return:
+        choice - the choice of the user
+
+    """
+    while True:
+        choice = int(input("Choice: "))
+
+        if choice >= 0 and choice < upper:
+            return choice
+
+        print("Invalid choice")
