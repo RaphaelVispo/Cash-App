@@ -1,5 +1,5 @@
 from utils import *
-
+import shortuuid
 
 def get_groups(user):
     header = ["group_id", "expense_id", "name"]
@@ -47,7 +47,22 @@ def search_group(user):
 
 
 def add_group():
-    pass
+    """
+    add_group
+        Will ask for the new name of the group
+        and will print the new group in the data
+
+    """
+    print_msg_box("Add group")
+    id = shortuuid.uuid()
+    name = input("Name of the new group: ")
+
+    execute_query(f'''
+        INSERT INTO HAS_GROUP 
+            VALUES (\'{id}\', \'{name}\') ;
+                ''')
+    print("Added new group:")
+    get_group_name(id)
 
 
 def edit_group():
@@ -59,3 +74,5 @@ def delete_group():
 
 
 # search_group('3xyaufSzzUp9LPkSKTxhqz')
+
+add_group('3xyaufSzzUp9LPkSKTxhqz')
