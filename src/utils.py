@@ -41,3 +41,11 @@ def get_table(query, cols):
     rows = cur.fetchall()
     df_tables = pd.DataFrame(data=rows, columns=cols)
     return df_tables
+
+
+def execute_query(query):
+    try:
+        cur.execute(query)
+    except mariadb.Error as e:
+        print(f"Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
