@@ -21,7 +21,7 @@ populate-database:
 	echo 'Populating the tables: DONE !!'
 
 run:
-	python src/main.py
+	python3 src/main.py
 
 clean:
 	yapf -i ./src/*.py
