@@ -9,4 +9,4 @@ def get_username(user):
         SELECT user_name FROM USER WHERE user_id =\'{user}\' ;
             ''', header)
 
-    print_table(table, header)
+    print_table(table, header, False)

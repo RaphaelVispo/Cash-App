@@ -8,11 +8,11 @@ from friends import *
 
 user = "3xyaufSzzUp9LPkSKTxhqz"
 
-get_unpaid_expenses()
-get_paid_expenses()
-get_total_paid_expenses()
-get_total_unpaid_expenses()
-get_total_expenses()
-get_friends()
-get_username()
-get_groups()
+get_unpaid_expenses(user)
+get_paid_expenses(user)
+get_total_paid_expenses(user)
+get_total_unpaid_expenses(user)
+get_total_expenses(user)
+get_friends(user)
+get_username(user)
+get_groups(user)
