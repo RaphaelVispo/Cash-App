@@ -84,7 +84,7 @@ def edit_friend(user):
 
 def delete_friend(user):
     """
-    edit_friend
+    delete_friend
         will delete a friend from the friend list of the user
         and vice versa
 
@@ -117,7 +117,7 @@ def delete_friend(user):
 
 def add_friend(user):
     """
-    edit_friend
+    add_friend
         will add a friend from the friend list of the user
         and vice versa
 
