@@ -38,7 +38,7 @@ def choice(upper):
         print("Invalid choice")
 
 
-def search_one_friend(user):
+def search_friend(user):
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -46,7 +46,7 @@ def search_one_friend(user):
     get_username(friend_list.user_id[c])
 
 
-def edit_one_friend(user):
+def edit_friend(user):
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -63,37 +63,63 @@ def edit_one_friend(user):
     get_username(friend_list.user_id[c])
 
 
-def delete_one_friend(user):
+def delete_friend(user):
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
 
     friend = friend_list.user_id[c]
 
-    get_username(user)
-    get_username(friend)
-
-    get_friends(user)
-    get_friends(friend)
-
-    print("Deleting Friend ....")
     execute_query(f'''
     DELETE FROM USER_FRIEND WHERE user_id = \'{user}\'
         AND friend= \'{friend}\' ;
         ''')
+    print(f"Deleting {friend_list.Friends[c]} as friend ... ")
     execute_query(f'''
     DELETE FROM USER_FRIEND WHERE user_id = \'{friend}\'
         AND friend= \'{user}\' ;
         ''')
 
     get_friends(user)
-    get_friends(friend)
+    print(f"Friend deleted: {table.Name[c]}")
 
 
 
-# search_one_friend(user)
+def add_friend(user):
 
-get_username(user)
-delete_one_friend(user)
-# edit_one_friend(user)
-# get_friends(user)
+    
+
+    header = ["user_id", "Name"]
+    table = get_table(
+        f'''
+        SELECT * FROM USER 
+            WHERE user_id NOT IN (
+                SELECT friend FROM USER_FRIEND 
+                WHERE user_id = \'{user}\' 
+            )
+            ORDER BY RAND()
+            LIMIT 5;
+        ''', 
+        header)
+
+    clean_table = table.drop(columns='user_id', axis=1)
+    header.remove("user_id")
+    print_table(clean_table, header)
+
+    c = choice(len(table))
+
+    friend = table.user_id[c]
+
+    execute_query(f'''
+    INSERT INTO  USER_FRIEND 
+        VALUES (\'{user}\', \'{friend}\') ;
+        ''')
+    print(f"Deleting {table.Name[c]} as friend ... ")
+    execute_query(f'''
+    INSERT INTO  USER_FRIEND 
+        VALUES (\'{friend}\', \'{user}\') ;
+        ''')
+    get_friends(user)
+    print(f"Friend added {table.Name[c]}")
+
+
