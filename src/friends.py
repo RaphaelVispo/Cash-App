@@ -39,28 +39,6 @@ def get_friends(user):
     return table
 
 
-def choice(upper):
-    """
-    choice 
-        gets the user's input if the condition is true, else 
-        it will loop over until the user provide the correct choice
-
-    params:
-        upper - the upper limit of the choice
-    
-    return:
-        choice - the choice of the user
-
-    """
-    while True:
-        choice = int(input("Choice: "))
-
-        if choice >= 0 and choice < upper:
-            return choice
-
-        print("Invalid choice")
-
-
 def search_friend(user):
     """
     search_friend
@@ -106,7 +84,7 @@ def edit_friend(user):
 
 def delete_friend(user):
     """
-    edit_friend
+    delete_friend
         will delete a friend from the friend list of the user
         and vice versa
 
@@ -139,7 +117,7 @@ def delete_friend(user):
 
 def add_friend(user):
     """
-    edit_friend
+    add_friend
         will add a friend from the friend list of the user
         and vice versa
 
@@ -148,7 +126,6 @@ def add_friend(user):
 
     """
     print_msg_box("Add Friend")
-
 
     header = ["user_id", "Name"]
 
