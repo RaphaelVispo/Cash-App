@@ -52,6 +52,8 @@ def add_group(id):
         Will ask for the new name of the group
         and will print the new group in the data
 
+    params:
+        id (shortuuid)- id of the group
     """
     print_msg_box("Add group")
 
@@ -70,6 +72,9 @@ def edit_group(user):
     edit_group
         Will ask for the new name of the group
         and will print the new group in the data
+    
+    params:
+        user: will get the users groups
 
     """
     print_msg_box("Edit group")    
@@ -86,12 +91,23 @@ def edit_group(user):
     print("Edited the name of the group:")
     get_group_name(table.group_id[c])
 
-def delete_group():
-    pass
+def delete_group(user):
+    """
+    delete_group
+        will delete group from the users choice
+
+    params:
+        user: will get the users groups
 
 
-user = '3xyaufSzzUp9LPkSKTxhqz'
-# search_group('3xyaufSzzUp9LPkSKTxhqz')
+    """
+    print_msg_box("Delete group")    
+    table = get_groups(user)
 
-add_group(shortuuid.uuid())
-edit_group(user)
+    c = choice(len(table.group_id))  
+    execute_query(f'''
+    DELETE FROM HAS_GROUP WHERE group_id = \'{table.group_id[c]}\'
+            ''') 
+    print(f"Deleted group {table.name[c]}")
+
+
