@@ -64,10 +64,36 @@ def edit_one_friend(user):
 
 
 def delete_one_friend(user):
-    
-    pass
+
+    friend_list = get_friends(user)
+    c = choice(len(friend_list))
+
+    friend = friend_list.user_id[c]
+
+    get_username(user)
+    get_username(friend)
+
+    get_friends(user)
+    get_friends(friend)
+
+    print("Deleting Friend ....")
+    execute_query(f'''
+    DELETE FROM USER_FRIEND WHERE user_id = \'{user}\'
+        AND friend= \'{friend}\' ;
+        ''')
+    execute_query(f'''
+    DELETE FROM USER_FRIEND WHERE user_id = \'{friend}\'
+        AND friend= \'{user}\' ;
+        ''')
+
+    get_friends(user)
+    get_friends(friend)
+
 
 
 # search_one_friend(user)
-edit_one_friend(user)
-get_friends(user)
+
+get_username(user)
+delete_one_friend(user)
+# edit_one_friend(user)
+# get_friends(user)
