@@ -39,9 +39,6 @@ def get_friends(user):
     return table
 
 
-
-
-
 def search_friend(user):
     """
     search_friend
@@ -129,7 +126,6 @@ def add_friend(user):
 
     """
     print_msg_box("Add Friend")
-
 
     header = ["user_id", "Name"]
 

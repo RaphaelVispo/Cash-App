@@ -50,6 +50,7 @@ def execute_query(query):
         print(f"Error connecting to MariaDB Platform: {e}")
         sys.exit(1)
 
+
 def print_msg_box(msg, indent=20, width=None, title=None):
     """Print message-box with optional title."""
     lines = msg.split('\n')
