@@ -1,6 +1,7 @@
 from utils import *
 import shortuuid
 
+
 def get_groups(user):
     header = ["group_id", "expense_id", "name"]
 
@@ -77,7 +78,7 @@ def edit_group(user):
         user: will get the users groups
 
     """
-    print_msg_box("Edit group")    
+    print_msg_box("Edit group")
     table = get_groups(user)
 
     c = choice(len(table.group_id))
@@ -86,28 +87,23 @@ def edit_group(user):
     execute_query(f'''
         UPDATE HAS_GROUP SET group_name = \'{new_name}\'
             WHERE group_id= \'{table.group_id[c]}\' ;
-            ''') 
+            ''')
 
     print("Edited the name of the group:")
     get_group_name(table.group_id[c])
 
-def delete_group(user):
+
+def delete_group(id, name):
     """
     delete_group
-        will delete group from the users choice
+        will delete group from the id
 
     params:
-        user: will get the users groups
-
+        id - id of the group that will be deleted
+        name - name of the group
 
     """
-    print_msg_box("Delete group")    
-    table = get_groups(user)
-
-    c = choice(len(table.group_id))  
     execute_query(f'''
-    DELETE FROM HAS_GROUP WHERE group_id = \'{table.group_id[c]}\'
-            ''') 
-    print(f"Deleted group {table.name[c]}")
-
-
+    DELETE FROM HAS_GROUP WHERE group_id = \'{id}\'
+            ''')
+    print(f"Deleted the group: {group}")
