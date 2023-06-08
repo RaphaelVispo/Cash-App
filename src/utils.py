@@ -41,3 +41,26 @@ def get_table(query, cols):
     rows = cur.fetchall()
     df_tables = pd.DataFrame(data=rows, columns=cols)
     return df_tables
+
+
+def execute_query(query):
+    try:
+        cur.execute(query)
+    except mariadb.Error as e:
+        print(f"Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
+
+def print_msg_box(msg, indent=20, width=None, title=None):
+    """Print message-box with optional title."""
+    lines = msg.split('\n')
+    space = " " * indent
+    if not width:
+        width = max(map(len, lines))
+    box = f'╔{"═" * (width + indent * 2)}╗\n'  # upper_border
+    if title:
+        box += f'║{space}{title:<{width}}{space}║\n'  # title
+        box += f'║{space}{"-" * len(title):<{width}}{space}║\n'  # underscore
+    box += ''.join([f'║{space}{line:<{width}}{space}║\n' for line in lines])
+    box += f'╚{"═" * (width + indent * 2)}╝'  # lower_border
+    print(box)
+
