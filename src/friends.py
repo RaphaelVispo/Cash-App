@@ -6,10 +6,21 @@ This is the file that will have all of the functions for friends
 from utils import *
 from user import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
-
 
 def get_friends(user):
+    """
+    get_friends
+        gets the friend of the given user and prints the table
+        of the friends with index
+
+    params:
+        user - the user that it will get the friends
+    
+    return:
+        table - pandas full table of user name  and user id
+            of the friends 
+
+    """
     header = ["Friends", "user_id"]
 
     table = get_table(
@@ -29,6 +40,18 @@ def get_friends(user):
 
 
 def choice(upper):
+    """
+    choice 
+        gets the user's input if the condition is true, else 
+        it will loop over until the user provide the correct choice
+
+    params:
+        upper - the upper limit of the choice
+    
+    return:
+        choice - the choice of the user
+
+    """
     while True:
         choice = int(input("Choice: "))
 
@@ -39,6 +62,14 @@ def choice(upper):
 
 
 def search_friend(user):
+    """
+    search_friend
+        picking the user friend from the choice of a user
+
+    params:
+        user - the user that it will get the friends
+
+    """
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -47,6 +78,14 @@ def search_friend(user):
 
 
 def edit_friend(user):
+    """
+    edit_friend
+        will change the name of the friend 
+
+    params:
+        user - the user that it will get the friends
+
+    """
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -64,12 +103,22 @@ def edit_friend(user):
 
 
 def delete_friend(user):
+    """
+    edit_friend
+        will delete a friend from the friend list of the user
+        and vice versa
+
+    params:
+        user - the user that it will get the friends
+
+    """
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
 
     friend = friend_list.user_id[c]
 
+    # deleting the user friend and vice versa
     execute_query(f'''
     DELETE FROM USER_FRIEND WHERE user_id = \'{user}\'
         AND friend= \'{friend}\' ;
@@ -84,12 +133,20 @@ def delete_friend(user):
     print(f"Friend deleted: {table.Name[c]}")
 
 
-
 def add_friend(user):
+    """
+    edit_friend
+        will add a friend from the friend list of the user
+        and vice versa
 
-    
+    params:
+        user - the user that it will get the friends
+
+    """
 
     header = ["user_id", "Name"]
+
+    # getting the non-friend of the user limit = 5
     table = get_table(
         f'''
         SELECT * FROM USER 
@@ -99,8 +156,7 @@ def add_friend(user):
             )
             ORDER BY RAND()
             LIMIT 5;
-        ''', 
-        header)
+        ''', header)
 
     clean_table = table.drop(columns='user_id', axis=1)
     header.remove("user_id")
@@ -108,6 +164,7 @@ def add_friend(user):
 
     c = choice(len(table))
 
+    # adding the user for both user ad friends
     friend = table.user_id[c]
 
     execute_query(f'''
@@ -121,5 +178,3 @@ def add_friend(user):
         ''')
     get_friends(user)
     print(f"Friend added {table.Name[c]}")
-
-
