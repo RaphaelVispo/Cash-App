@@ -38,15 +38,12 @@ def choice(upper):
         print("Invalid choice")
 
 
-
-
 def search_one_friend(user):
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
 
     get_username(friend_list.user_id[c])
-
 
 
 def edit_one_friend(user):
@@ -58,17 +55,19 @@ def edit_one_friend(user):
 
     new_name = input("New name: ")
 
-    execute_query(
-        f'''
+    execute_query(f'''
         UPDATE USER SET user_name = \'{new_name}\'
             WHERE user_id= \'{friend_list.user_id[c]}\' ;
             ''')
 
     get_username(friend_list.user_id[c])
 
+
 def delete_one_friend(user):
+    
     pass
 
 
 # search_one_friend(user)
 edit_one_friend(user)
+get_friends(user)
