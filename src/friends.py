@@ -70,6 +70,7 @@ def search_friend(user):
         user - the user that it will get the friends
 
     """
+    print_msg_box("Search Friend")
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -87,6 +88,7 @@ def edit_friend(user):
 
     """
 
+    print_msg_box("Edit Friend")
     friend_list = get_friends(user)
     c = choice(len(friend_list))
 
@@ -112,6 +114,8 @@ def delete_friend(user):
         user - the user that it will get the friends
 
     """
+
+    print_msg_box("Delete Friend")
 
     friend_list = get_friends(user)
     c = choice(len(friend_list))
@@ -143,6 +147,8 @@ def add_friend(user):
         user - the user that it will get the friends
 
     """
+    print_msg_box("Add Friend")
+
 
     header = ["user_id", "Name"]
 
