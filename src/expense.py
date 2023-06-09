@@ -247,6 +247,6 @@ def add_expense(id, creditor, amount, settled):
 
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},{CURDATE()}) ;
+            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
                 ''')
-    print("Added new expense:")  
+    print("Added new expense")  
