@@ -166,3 +166,25 @@ def get_friends_with_outstanding_bal(user):
         print_table(table, header)
     else:
         print('No friends with outstanding balances')
+        
+def search_expense(user, expense):
+    header = ["Group Name", "Date", "Amount", "Settled?"]
+    
+    table = get_table (
+        f'''
+    select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a 
+    natural join HAS_GROUP 
+    natural join EXPENSE e 
+    join USER u on e.creditor = u.user_id and expense_id = \'{expense}\' and a.user_id = \'{user}\';
+        ''', header)
+    
+    if table.empty == False:
+        print_table(table, header)
+    else:
+        print('Error! Expense not found!')
+        
+def edit_expense (expense):
+    run_edit(f'''update EXPENSE set amount = 995 where expense_id = \'{expense}\';''')
+
+def delete_expense(expense):
+    run_delete(f'''delete from EXPENSE where expense_id = \'{expense}\';''')

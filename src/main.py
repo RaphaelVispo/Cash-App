@@ -6,7 +6,7 @@ from group import *
 from user import *
 from friends import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
+user = "7j28XCkCHvtGu3Bqns8TTh"
 
 # get_unpaid_expenses(user)
 # get_paid_expenses(user)
@@ -17,10 +17,11 @@ get_total_expenses(user) #current balance from all expenses
 # get_username(user)
 get_groups(user) #view all groups
 # get_expenses_in_a_month(user, 'January') # view all expenses in a month
-# get_expenses_with_a_friend(user, 'Dennis Watson') # view all expenses with a friend
+get_expenses_with_a_friend(user, 'Bobby Barr') # view all expenses with a friend
 get_expenses_with_a_group(user, 'Group 40') # view all expenses with a group
 get_friends_with_outstanding_bal(user) # view all friends with outstanding balance
 get_groups_with_outstanding_bal(user) # view all groups with outstanding balance
+search_expense(user, 'GvWpxAGdmMk4HRbqNSdcZ5')
 
 # def chooseEfg():
 #   # pili what to add delete search update(EXPENSE, FRIEND, GROUP)
