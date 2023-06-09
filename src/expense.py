@@ -188,3 +188,24 @@ def edit_expense (expense):
 
 def delete_expense(expense):
     run_delete(f'''delete from EXPENSE where expense_id = \'{expense}\';''')
+    
+def add_expense(id, creditor, amount, settled, date):
+    """
+    add_expense
+        Will ask for the new name of the group
+        and will print the new group in the data
+
+    params:
+        id (shortuuid)- id of the group
+    """
+    print_msg_box("Add group")
+
+    name = input("Name of the new group: ")
+
+    new_expense_id = shortuuid.uuid()
+    
+    execute_query(f'''
+        INSERT INTO EXPENSE
+            VALUES (\'{new_expense_id}\', \'{creditor}\',\'{amount}\',\'{settled}\',\'{name}\') ;
+                ''')
+    print("Added new expense:")  
