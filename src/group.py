@@ -20,6 +20,31 @@ def get_groups(user):
 
     return table
 
+def get_groups_with_outstanding_bal(user):
+    
+    header = ["User Name", "Group"]
+    
+    table = get_table (
+        f'''
+    SELECT u.user_name, g.group_name
+        FROM USER u
+        JOIN USER_HAS_GROUP_EXPENSE uge ON u.user_id = uge.user_id
+        JOIN EXPENSE e ON uge.expense_id = e.expense_id
+        JOIN HAS_GROUP g ON uge.group_id = g.group_id
+        WHERE e.is_settled = 0
+        AND u.user_id = \'{user}\';
+        ''', header)
+    if table.empty == False:
+        print_table(table, header)
+    else:
+        print('No groups with outstanding balances')
+    clean_table = table.drop(columns=['group_id', 'expense_id'], axis=1)
+    header.remove('group_id')
+    header.remove('expense_id')
+    print_table(clean_table, header)
+
+    return table
+
 
 def get_group_name(group):
     header = ["group_name"]
@@ -107,3 +132,4 @@ def delete_group(id, name):
     DELETE FROM HAS_GROUP WHERE group_id = \'{id}\'
             ''')
     print(f"Deleted the group: {group}")
+
