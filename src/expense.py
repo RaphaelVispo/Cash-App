@@ -245,10 +245,8 @@ def delete_expense(expense):
     
 def add_expense(id, creditor, amount, settled):
 
-    new_expense_id = shortuuid.uuid()
-    
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{new_expense_id}\', \'{creditor}\',{amount},{settled},{CURDATE()}) ;
+            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},{CURDATE()}) ;
                 ''')
     print("Added new expense:")  
