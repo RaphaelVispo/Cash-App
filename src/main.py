@@ -43,163 +43,163 @@ search_expense(user, 'GvWpxAGdmMk4HRbqNSdcZ5')
 
 # then gamitin efgChoice for...
       
-  # def addExpense():
+# def addExpense():
     
     
     
     
-  # def addFriend():
-    
-    
-
-  # def addGroup():
-    
-    
-    
-    
-  # def deleteExpense():
-    
-    
-    
-    
-  # def deleteFriend():
-    
+# def addFriend():
     
     
 
-  # def deleteGroup():
+# def addGroup():
     
     
     
     
-  # def searchExpense():
+# def deleteExpense():
     
     
     
     
-  # def searchFriend():
+# def deleteFriend():
     
     
     
 
-  # def searchGroup():
+# def deleteGroup():
+    
+    
+    
+    
+# def searchExpense():
+    
+    
+    
+    
+# def searchFriend():
+    
+    
+    
+
+# def searchGroup():
 
     
 
     
-  # def updateExpense():
+# def updateExpense():
     
     
     
     
-  # def updateFriend():
+# def updateFriend():
     
     
     
 
-  # def updateGroup():  
+# def updateGroup():  
     
     
     
-  # def chooseView():
-  #   while True:
-  #     try:
-  #       print("What would you like to view?")
-  #       print("[1] ALL EXPENSES MADE WITH WITHIN A MONTH")
-  #       print("[2] ALL EXPENSES MADE WITH A FRIEND")
-  #       print("[3] ALL EXPENSES MADE WITH A GROUP")
-  #       print("[4] CURRENT BALANCE FROM ALL EXPENSES")
-  #       print("[5] ALL FRIENDS WITH OUTSTANDING BALANCE")
-  #       print("[6] ALL GROUPS")
-  #       print("[7] ALL GROUPS WITH OUTSTANDING BALANCE
-  #       #print("What would you like to view?")
+# def chooseView():
+#   while True:
+#     try:
+#       print("What would you like to view?")
+#       print("[1] ALL EXPENSES MADE WITH WITHIN A MONTH")
+#       print("[2] ALL EXPENSES MADE WITH A FRIEND")
+#       print("[3] ALL EXPENSES MADE WITH A GROUP")
+#       print("[4] CURRENT BALANCE FROM ALL EXPENSES")
+#       print("[5] ALL FRIENDS WITH OUTSTANDING BALANCE")
+#       print("[6] ALL GROUPS")
+#       print("[7] ALL GROUPS WITH OUTSTANDING BALANCE
+#       #print("What would you like to view?")
               
-  #       viewChoice = input(print("Your choice: "))
-  #       if viewChoice > 0 and viewChoice < 8:
-  #         #print("")
-  #           break;
-  #       else:
-  #         print("Invalid entry. Please try again.")
-  #     except:
-  #       continue  
+#       viewChoice = input(print("Your choice: "))
+#       if viewChoice > 0 and viewChoice < 8:
+#         #print("")
+#           break;
+#       else:
+#         print("Invalid entry. Please try again.")
+#     except:
+#       continue  
               
-  # def viewExpensesMonth():
+# def viewExpensesMonth():
     
     
     
     
-  # def viewExpensesFriend():
+# def viewExpensesFriend():
     
     
     
     
-  # def viewExpensesGroup():
-    
-    
-    
-
-  # def viewCurrentBalance():
-
-    
-
-    
-  # def viewFriendsOutstanding():
-    
-    
-    
-    
-  # def viewGroups():
+# def viewExpensesGroup():
     
     
     
 
-  # def viewGroupsOutstanding():             
+# def viewCurrentBalance():
+
+    
+
+    
+# def viewFriendsOutstanding():
+    
+    
+    
+    
+# def viewGroups():
+    
+    
+    
+
+# def viewGroupsOutstanding():             
 
               
               
             
 
-  # # will clean up/ make functions laterrr
+# # will clean up/ make functions laterrr
 
-  # ## WELCOME SCREEN ##
+# ## WELCOME SCREEN ##
 
-  # while True:
-  #   try:
-  #     #print("Welcome to Cash-App kineme")
-  #     print("[1] ADD")
-  #     print("[2] DELETE")
-  #     print("[3] SEARCH")
-  #     print("[4] UPDATE")
-  #     print("[5] VIEW")
-  #     print("[0] EXIT CASH-APP")
+# while True:
+#   try:
+#     #print("Welcome to Cash-App kineme")
+#     print("[1] ADD")
+#     print("[2] DELETE")
+#     print("[3] SEARCH")
+#     print("[4] UPDATE")
+#     print("[5] VIEW")
+#     print("[0] EXIT CASH-APP")
 
-  #     action = input("What would you like to do?")
-  #     if action >= 0 and action <= 5:
-  #       #print("")
-  #       break;
-  #     else:
-  #       print("Invalid entry. Please try again.")
-  #   except:
-  #       continue
+#     action = input("What would you like to do?")
+#     if action >= 0 and action <= 5:
+#       #print("")
+#       break;
+#     else:
+#       print("Invalid entry. Please try again.")
+#   except:
+#       continue
 
-  # if action == 1:
-  #   print("What would you like to add?")
-  #   chooseEfg()
+# if action == 1:
+#   print("What would you like to add?")
+#   chooseEfg()
       
-  # elif action == 2:
-  #   print("What would you like to delete?")
-  #   chooseEfg()
+# elif action == 2:
+#   print("What would you like to delete?")
+#   chooseEfg()
     
-  # elif action == 3:
-  #   print("What would you like to search?")
-  #   chooseEfg()
+# elif action == 3:
+#   print("What would you like to search?")
+#   chooseEfg()
     
-  # elif action == 4:
-  #   print("What would you like to update?")
-  #   chooseEfg() 
+# elif action == 4:
+#   print("What would you like to update?")
+#   chooseEfg() 
     
-  # elif action == 5:
-  #   chooseView()
+# elif action == 5:
+#   chooseView()
     
-  # elif action == 0:
-  #   # byebye ty for using cash app
+# elif action == 0:
+#   # byebye ty for using cash app
