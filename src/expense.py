@@ -183,11 +183,65 @@ def search_expense(user, expense):
     else:
         print('Error! Expense not found!')
         
-def edit_expense (expense):
-    run_edit(f'''update EXPENSE set amount = 995 where expense_id = \'{expense}\';''')
+def edit_expense (user, expense):
+    """
+    edit_expense
+        Will ask for the new name of the group
+        and will print the new group in the data
+    
+    params:
+        user: will get the users expense
+
+    """
+    
+    header = ["Group Name", "Date", "Amount", "Settled?"]
+    print_msg_box("Edit Expense")
+    table = get_table(
+        f'''
+        select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a 
+    natural join HAS_GROUP 
+    natural join EXPENSE e 
+    join USER u on e.creditor = u.user_id and a.user_id = \'{user}\';
+    ''', header
+    )
+    
+    print("0: edit amount | 1: edit status")
+    
+    edit_type = choice(2)
+    
+    if edit_type == 0:
+        c = choice(len(table.group_name))
+        new_amount = input("New amount: ")
+
+        execute_query(f'''
+            update EXPENSE set amount = {new_amount} where expense_id = \'{expense}\';
+                ''')
+
+        print("Successfully edited the amount!")
+        
+    elif edit_type == 1:
+        c = choice(len(table.group_name))
+        new_status = input("New status: ")
+
+        execute_query(f'''
+            update EXPENSE set is_settled = {new_status} where expense_id = \'{expense}\';
+                ''')
+        print("Successfully edited the status!")
 
 def delete_expense(expense):
     run_delete(f'''delete from EXPENSE where expense_id = \'{expense}\';''')
+    """
+    delete_group
+        will delete expense from given id
+
+    params:
+        id - id of the group that will be deleted
+
+    """
+    execute_query(f'''
+    delete from EXPENSE where expense_id = \'{expense}\';
+            ''')
+    print("Deleted the expense!")
     
 def add_expense(id, creditor, amount, settled, date):
     """
@@ -206,6 +260,6 @@ def add_expense(id, creditor, amount, settled, date):
     
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{new_expense_id}\', \'{creditor}\',\'{amount}\',\'{settled}\',\'{name}\') ;
+            VALUES (\'{new_expense_id}\', \'{creditor}\',{amount},{settled},\'{name}\') ;
                 ''')
     print("Added new expense:")  
