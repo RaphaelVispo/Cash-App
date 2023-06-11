@@ -30,6 +30,8 @@ def choose_Efg():
             if efg_Choice > 0 and efg_Choice < 4:
                 return efg_Choice
                 break;
+            else:
+                print("Invalid entry. Please try again.")
         except:
             print("Invalid entry. Please try again.\n")
             continue
@@ -52,91 +54,102 @@ def choose_View():
             if view_Choice > 0 and view_Choice < 7:
                 return view_Choice
                 break;
+            else:
+                print("Invalid entry. Please try again.\n")
         except:
             print("Invalid entry. Please try again.\n")
             continue
 
 
-
-while True:
-    try:
-        print("Welcome to Cash-App kineme\n")
-        print("[1] ADD")
-        print("[2] DELETE")
-        print("[3] SEARCH")
-        print("[4] UPDATE")
-        print("[5] VIEW")
-        print("[0] EXIT CASH-APP")
-    
-        action = int(input("\nWhat would you like to do? "))
-        if action >= 0 and action <= 5:
-            break;
-        else:
+def main_Menu():
+    global action
+    while True:
+        try:
+            print("Welcome to Cash-App kineme\n")
+            print("[1] ADD")
+            print("[2] DELETE")
+            print("[3] SEARCH")
+            print("[4] UPDATE")
+            print("[5] VIEW")
+            print("[0] EXIT CASH-APP")
+        
+            action = int(input("\nWhat would you like to do? "))
+            if action >= 0 and action <= 5:
+                return action
+                break;
+            else:
+                print("Invalid entry. Please try again.\n")
+        except:
             print("Invalid entry. Please try again.\n")
-    except ValueError:
-        print("Invalid entry. Please try again.\n")
-        continue
+            continue
+
 ## instead of print, lagay yung function for it
-if action == 1:
-    print("What would you like to add?")
-    choose_Efg()
-    if efg_Choice == 1:
-        print("Add expense")
-    elif efg_Choice == 2:
-        print("Add friend")
-    elif efg_Choice == 3:
-        print("Add group")
+def action_Run():
+    if action == 1:
+        print("What would you like to add?")
+        choose_Efg()
+        if efg_Choice == 1:
+            print("Add expense")
+        elif efg_Choice == 2:
+            print("Add friend")
+        elif efg_Choice == 3:
+            print("Add group")
+        
     
-
-elif action == 2:
-    print("What would you like to delete?")
-    choose_Efg()
-    if efg_Choice == 1:
-        print("delete expense")
-    elif efg_Choice == 2:
-        print("delete friend")
-    elif efg_Choice == 3:
-        print("delete group")
-
-elif action == 3:
-    print("What would you like to search?")
-    choose_Efg()
-    if efg_Choice == 1:
-        print("search expense")
-    elif efg_Choice == 2:
-        print("search friend")
-    elif efg_Choice == 3:
-        print("search group")
-
-elif action == 4:
-    print("What would you like to update?")
-    choose_Efg()
-    if efg_Choice == 1:
-        print("update expense")
-    elif efg_Choice == 2:
-        print("update friend")
-    elif efg_Choice == 3:
-        print("update group")
-
-elif action == 5:
-    choose_View()
-    if view_Choice == 1:
-        print("expense month")
-    elif view_Choice == 2:
-        print("expense friend")
-    elif view_Choice == 3:
-        print("expense group")
-    elif view_Choice == 4:
-        print("expense balance")
-    elif view_Choice == 5:
-        print("friend balance")
-    elif view_Choice == 6:
-        print("all groups")
-    elif view_Choice == 7:
-        print("group balance")
-
-elif action == 0:
-    print("You have exited CASH-APP")
-
-if action != 0:    
-    print("Thank you for using CASH-APP!!")
+    elif action == 2:
+        print("What would you like to delete?")
+        choose_Efg()
+        if efg_Choice == 1:
+            print("delete expense")
+        elif efg_Choice == 2:
+            print("delete friend")
+        elif efg_Choice == 3:
+            print("delete group")
+    
+    elif action == 3:
+        print("What would you like to search?")
+        choose_Efg()
+        if efg_Choice == 1:
+            print("search expense")
+        elif efg_Choice == 2:
+            print("search friend")
+        elif efg_Choice == 3:
+            print("search group")
+    
+    elif action == 4:
+        print("What would you like to update?")
+        choose_Efg()
+        if efg_Choice == 1:
+            print("update expense")
+        elif efg_Choice == 2:
+            print("update friend")
+        elif efg_Choice == 3:
+            print("update group")
+    
+    elif action == 5:
+        choose_View()
+        if view_Choice == 1:
+            print("expense month")
+        elif view_Choice == 2:
+            print("expense friend")
+        elif view_Choice == 3:
+            print("expense group")
+        elif view_Choice == 4:
+            print("expense balance")
+        elif view_Choice == 5:
+            print("friend balance")
+        elif view_Choice == 6:
+            print("all groups")
+        elif view_Choice == 7:
+            print("group balance")
+        
+    elif action == 0:
+        print("You have exited CASH-APP")
+        
+        
+main_Menu() 
+action_Run()
+while True:
+    if action != 0:
+        main_Menu()
+        action_Run()
