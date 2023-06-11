@@ -30,8 +30,6 @@ def choose_Efg():
             if efg_Choice > 0 and efg_Choice < 4:
                 return efg_Choice
                 break;
-            else:
-                print("Invalid entry. Please try again.")
         except:
             print("Invalid entry. Please try again.\n")
             continue
@@ -54,8 +52,6 @@ def choose_View():
             if view_Choice > 0 and view_Choice < 7:
                 return view_Choice
                 break;
-            else:
-                print("Invalid entry. Please try again.")
         except:
             print("Invalid entry. Please try again.\n")
             continue
