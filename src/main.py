@@ -36,6 +36,7 @@ def choose_Efg():
             print("Invalid entry. Please try again.\n")
             continue
             
+            
 def choose_View():
     global view_Choice
     while True:
@@ -65,15 +66,14 @@ def main_Menu():
     global action
     while True:
         try:
-            print("Welcome to Cash-App kineme\n")
             print("[1] ADD")
             print("[2] DELETE")
             print("[3] SEARCH")
             print("[4] UPDATE")
             print("[5] VIEW")
-            print("[0] EXIT CASH-APP")
+            print("[0] EXIT CASH-APP\n")
+            action = int(input("What would you like to do? "))
         
-            action = int(input("\nWhat would you like to do? "))
             if action >= 0 and action <= 5:
                 return action
                 break;
@@ -83,10 +83,11 @@ def main_Menu():
             print("Invalid entry. Please try again.\n")
             continue
 
+
 ## instead of print, lagay yung function for it
 def action_Run():
     if action == 1:
-        print("What would you like to add?")
+        print("What would you like to add?\n")
         choose_Efg()
         if efg_Choice == 1:
             print("Add expense")
@@ -94,10 +95,9 @@ def action_Run():
             print("Add friend")
         elif efg_Choice == 3:
             print("Add group")
-        
     
     elif action == 2:
-        print("What would you like to delete?")
+        print("What would you like to delete?\n")
         choose_Efg()
         if efg_Choice == 1:
             print("delete expense")
@@ -107,7 +107,7 @@ def action_Run():
             print("delete group")
     
     elif action == 3:
-        print("What would you like to search?")
+        print("What would you like to search?\n")
         choose_Efg()
         if efg_Choice == 1:
             print("search expense")
@@ -117,7 +117,7 @@ def action_Run():
             print("search group")
     
     elif action == 4:
-        print("What would you like to update?")
+        print("What would you like to update?\n")
         choose_Efg()
         if efg_Choice == 1:
             print("update expense")
@@ -144,9 +144,10 @@ def action_Run():
             print("group balance")
         
     elif action == 0:
-        print("You have exited CASH-APP")
+        print("You have exited Cash-App. ")
         
         
+print("Welcome to Cash-App!!\n")        
 main_Menu() 
 action_Run()
 while True:
