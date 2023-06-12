@@ -126,7 +126,7 @@ def action_Run():
         elif efg_Choice == 2:
             add_friend(user)
         elif efg_Choice == 3:
-            add_user_expense(user_id, group_id, expense_id)
+            add_user_expense(user)
     
     elif action == 2:
         print("What would you like to delete?\n")
@@ -142,7 +142,7 @@ def action_Run():
         print("What would you like to search?\n")
         search_Update_Menu()
         if efg_Choice == 1:
-            search_expense(user, expense)
+            search_expense(user)
         elif efg_Choice == 2:
             search_friend(user)
         elif efg_Choice == 3:
