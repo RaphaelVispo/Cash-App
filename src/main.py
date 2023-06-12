@@ -11,15 +11,6 @@ user = picked["user_id"]
 name = picked["name"]
 print(f"user_id: {user} , name: {name}" )
 
-get_unpaid_expenses(user)
-get_paid_expenses(user)
-get_total_paid_expenses(user)
-get_total_unpaid_expenses(user)
-get_total_expenses(user)
-get_friends(user)
-get_username(user)
-get_groups(user)
-
 
 def add_Menu():
     global efg_Choice
