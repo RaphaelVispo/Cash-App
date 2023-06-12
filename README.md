@@ -1,6 +1,14 @@
 # CASH APP
 Hello! This is a Cash App clone! 
 
+by:
+```
+Group 1 - S5L
+Francis Gabriel Magcalas
+Angelo Soliveres
+Raphael Vispo
+```
+
 # Relational Table
 ```
 USER(user_id, user_name)
