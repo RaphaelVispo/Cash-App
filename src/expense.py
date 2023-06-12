@@ -1,6 +1,7 @@
 from utils import *
 from friends import *
 from group import *
+import shortuuid
 
 
 def get_unpaid_expenses(user):
@@ -157,6 +158,28 @@ def get_expenses_with_a_group(user):
     print_msg_box("Select a group")
     
     group_list = get_groups(user)
+    c = choice(len(group_list))
+    
+    header = ["User Name", "Date", "Amount", "Group Name", "Friend", "Friend Amount"]
+    
+    table = get_table (
+        f'''
+    SELECT a.user_name, e.expense_date, e.amount, group_name, c.user_name, x.amount as friend FROM USER a 
+    JOIN USER_FRIEND b ON a.user_id = b.user_id 
+    JOIN USER c ON b.friend = c.user_id 
+    JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
+    natural join HAS_GROUP 
+    natural join EXPENSE e
+    join USER_HAS_GROUP_EXPENSE f on c.user_id = f.user_id
+    join EXPENSE x on f.expense_id = x.expense_id where group_id = \'{group_list.group_id[c]}\' and a.user_id = \'{user}\'order by e.expense_date desc;
+        ''', header)
+    
+    if table.empty == False:
+        print_table(table, header)
+    else:
+        print('No expenses yet for this group')
+        
+def get_expenses_with_a_group_input(user,group):
     
     header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
     
@@ -167,7 +190,8 @@ def get_expenses_with_a_group(user):
     JOIN USER c ON b.friend = c.user_id 
     JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
     natural join HAS_GROUP 
-    natural join EXPENSE e where group_name = \'{group}\' and a.user_id = \'{user}\'order by e.expense_date desc;
+    natural join EXPENSE e 
+    where group_id = \'{group}\' and a.user_id = \'{user}\'order by e.expense_date desc;
         ''', header)
     
     if table.empty == False:
@@ -256,9 +280,7 @@ def edit_expense (user):
         print("Successfully edited the status!")
         search_expense(user, expense_list.expense_id[select])
         
-        
-
-def delete_expense(expense):
+def delete_expense(user):
     """
     delete_group
         will delete expense from given id
@@ -267,17 +289,44 @@ def delete_expense(expense):
         id - id of the group that will be deleted
 
     """
-    execute_query(f'''
-    delete from EXPENSE where expense_id = \'{expense}\';
-            ''')
-    print("Deleted the expense!")
+    expense_list = get_expense(user);
+    select = choice(len(expense_list.expense_id))
     
-def add_expense(id, creditor, amount, settled):
+    execute_query(f'''
+    delete from EXPENSE where expense_id = \'{expense_list.expense_id[select]}\';
+            ''')
+    
+    execute_query(f'''
+    delete from USER_HAS_GROUP_EXPENSE where expense_id = \'{expense_list.expense_id[select]}\';
+            ''')
+    
+    print("Deleted the expense!")
+    get_expense(user)
+    
+def add_expense(user):
+    
+    group_list = get_groups(user)
+    
+    groupChoice = choice(len(group_list.group_id))
+    
+    get_expenses_with_a_group_input(user, group_list.group_id[groupChoice])
+    new_id = shortuuid.uuid()
+    
+    settled = input ("Settled? 0: No | 1: Yes ")
+    amount = input ("Amount: ")
+    
+    # get_friends(user)
 
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
+            VALUES (\'{new_id}\', \'{user}\',{amount},{settled},CURDATE()) ;
                 ''')
+    
+    execute_query(f'''
+        INSERT INTO USER_HAS_GROUP_EXPENSE
+            VALUES (\'{user}\', \'{ group_list.group_id[groupChoice]}\',\'{new_id}\') ;
+                ''')
+    
     print("Added new expense")  
     
     

@@ -85,7 +85,7 @@ def action_Run():
         choose_Efg()
         if efg_Choice == 1:
             print("Add expense")
-        elif efg_Choice == 2:
+            add_expense(user)
             print("Add friend")
         elif efg_Choice == 3:
             print("Add group")
@@ -95,6 +95,7 @@ def action_Run():
         choose_Efg()
         if efg_Choice == 1:
             print("delete expense")
+            delete_expense(user)
         elif efg_Choice == 2:
             print("delete friend")
         elif efg_Choice == 3:
@@ -128,6 +129,7 @@ def action_Run():
             print("expense friend")
         elif view_Choice == 3:
             print("expense group")
+            get_expenses_with_a_group(user)
         elif view_Choice == 4:
             print("expense balance")
         elif view_Choice == 5:
