@@ -46,7 +46,7 @@ def delete_Menu():
         try:
             print("[1] GROUP EXPENSE")
             print("[2] FRIEND")
-            print("[3] FRIEND FROM A GROUP\n")
+            print("[3] EXPENSE FROM A GROUP\n")
 
             efg_Choice = int(input("Your choice: "))
             if efg_Choice > 0 and efg_Choice < 4:
@@ -145,9 +145,7 @@ def action_Run():
         elif efg_Choice == 2:
             delete_friend(user)
         elif efg_Choice == 3:
-            #delete_group(id, name)
             delete_user_choice(user)
-            # NOT SURE ---------------------------------------------------
     
     elif action == 3:
         print("What would you like to search?\n")
