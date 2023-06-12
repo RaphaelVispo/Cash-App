@@ -1,6 +1,16 @@
 # CASH APP
 Hello! This is a Cash App clone! 
 
+# Relational Table
+```
+USER(user_id, user_name)
+USER_FRIEND(user_id, friend)
+USER_HAS_GROUP_EXPENSE(user_id, group_id, expense_id)
+HAS_GROUP(group_id, group_name)
+EXPENSE(expense_id, creditor, amount, is_settled, expense_date)
+
+```
+
 # Running App
 In running the app is separated by the remote and local database. But first installing the environment and the requirements
 1. Installation of `python (v.3.9)` or creating an environment
