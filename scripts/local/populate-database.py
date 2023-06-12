@@ -65,7 +65,7 @@ for user_id in df_user_id:
     rows = cur.fetchall()
     df_user_id = pd.DataFrame(data=rows, columns=['user_id']).user_id.tolist() # getting the list
 
-    # random generating of group expsense
+    # random generating of group expense
     x=random.randrange(1,10)
     for i in range(x):
         group_id = shortuuid.uuid()     
