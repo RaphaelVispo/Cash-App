@@ -227,7 +227,7 @@ def get_expense(user):
     
     return table
 
-def edit_expense (user):
+def edit_expense(user):
     
     expense_list = get_expense(user);
     select = choice(len(expense_list.expense_id))
