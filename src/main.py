@@ -145,7 +145,8 @@ def action_Run():
         elif efg_Choice == 2:
             delete_friend(user)
         elif efg_Choice == 3:
-            delete_group(id, name)
+            #delete_group(id, name)
+            delete_user_choice(user)
             # NOT SURE ---------------------------------------------------
     
     elif action == 3:
