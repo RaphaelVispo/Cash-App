@@ -177,13 +177,13 @@ def action_Run():
         elif view_Choice == 3:
             get_expenses_with_a_group(user)
         elif view_Choice == 4:
-            get_total_unpaid_expenses(user)
+            get_total_expenses(user)
         elif view_Choice == 5:
             get_friends_with_outstanding_bal(user)
         elif view_Choice == 6:
             get_groups(user)
         elif view_Choice == 7:
-            print("groups with outstanding balance")
+            get_total_unpaid_expenses(user)
         
     elif action == 0:
         print("You have exited Cash-App.")
