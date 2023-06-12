@@ -46,6 +46,7 @@ def get_paid_expenses(user):
 def get_total_paid_expenses(user):
 
     header = ["Total"]
+    
 
     table = get_table(
         f'''
@@ -62,6 +63,8 @@ def get_total_paid_expenses(user):
 
 
 def get_total_unpaid_expenses(user):
+    
+    get_unpaid_expenses(user)
 
     header = ["Total"]
 
@@ -207,53 +210,55 @@ def search_expense(user, expense):
     else:
         print('Error! Expense not found!')
         
-def edit_expense (user, expense):
-    """
-    edit_expense
-        Will ask for the new name of the group
-        and will print the new group in the data
-    
-    params:
-        user: will get the users expense
-
-    """
-    
-    header = ["Group Name", "Date", "Amount", "Settled?"]
+        
+def get_expense(user):
+    header = ["Group Name", "expense_id", "Date", "Amount", "Settled?"]
     print_msg_box("Edit Expense")
+    
     table = get_table(
         f'''
-        select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a 
+        select group_name, expense_id, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a 
     natural join HAS_GROUP 
     natural join EXPENSE e 
     join USER u on e.creditor = u.user_id and a.user_id = \'{user}\';
     ''', header
     )
+    print_table(table,header)
+    
+    return table
+
+def edit_expense (user):
+    
+    expense_list = get_expense(user);
+    select = choice(len(expense_list.expense_id))
     
     print("0: edit amount | 1: edit status")
     
     edit_type = choice(2)
     
     if edit_type == 0:
-        c = choice(len(table.group_name))
         new_amount = input("New amount: ")
 
         execute_query(f'''
-            update EXPENSE set amount = {new_amount} where expense_id = \'{expense}\';
+            update EXPENSE set amount = {new_amount} where expense_id = \'{expense_list.expense_id[select]}\';
                 ''')
 
         print("Successfully edited the amount!")
+        search_expense(user, expense_list.expense_id[select])
+        
         
     elif edit_type == 1:
-        c = choice(len(table.group_name))
-        new_status = input("New status: ")
+        new_status = choice(2)
 
         execute_query(f'''
-            update EXPENSE set is_settled = {new_status} where expense_id = \'{expense}\';
+            update EXPENSE set is_settled = {new_status} where expense_id = \'{expense_list.expense_id[select]}\';
                 ''')
         print("Successfully edited the status!")
+        search_expense(user, expense_list.expense_id[select])
+        
+        
 
 def delete_expense(expense):
-    run_delete(f'''delete from EXPENSE where expense_id = \'{expense}\';''')
     """
     delete_group
         will delete expense from given id
@@ -274,3 +279,5 @@ def add_expense(id, creditor, amount, settled):
             VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
                 ''')
     print("Added new expense")  
+    
+    

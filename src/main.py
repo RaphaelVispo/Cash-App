@@ -11,21 +11,6 @@ user = picked["user_id"]
 name = picked["name"]
 print(f"user_id: {user} , name: {name}" )
 
-# get_unpaid_expenses(user)
-# get_paid_expenses(user)
-# get_total_paid_expenses(user)
-# get_total_unpaid_expenses(user)
-# get_total_expenses(user) #current balance from all expenses
-# # get_friends(user)
-# # get_username(user)
-# get_groups(user) #view all groups
-# get_expenses_in_a_month(user, 'January') # view all expenses in a month
-# get_expenses_with_a_friend(user, 'Bobby Barr') # view all expenses with a friend
-# get_expenses_with_a_group(user, 'Group 40') # view all expenses with a group
-# get_friends_with_outstanding_bal(user) # view all friends with outstanding balance
-# get_groups_with_outstanding_bal(user) # view all groups with outstanding balance
-# search_expense(user, 'GvWpxAGdmMk4HRbqNSdcZ5')
-#get_expenses_in_a_month(user)
 
 def choose_Efg():
     global efg_Choice
