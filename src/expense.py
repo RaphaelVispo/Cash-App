@@ -279,3 +279,5 @@ def add_expense(id, creditor, amount, settled):
             VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
                 ''')
     print("Added new expense")  
+    
+    
