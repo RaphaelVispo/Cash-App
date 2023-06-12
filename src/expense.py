@@ -1,4 +1,6 @@
 from utils import *
+from friends import *
+from group import *
 
 
 def get_unpaid_expenses(user):
@@ -95,11 +97,23 @@ def get_total_expenses(user):
     print_table(table, header, False)
     
     
-def get_expenses_in_a_month(user,month):
+def get_expenses_in_a_month(user):
     header = ["Group Name", "Date", "Amount", "Settled?"]
+    
+    print_msg_box("Get expense in a month")
+    print_msg_box("Choose a month", indent=10)
+    month_table = [("January"), ("February"), ("March"), ("April"), ("May"), 
+                    ("June"), ("July"), ("August"), ("September"), ("October"), ("November"), ("December")]
+    print_table(pd.DataFrame(month_table), ["Month"])
+    c=choice(11)
+
+    month = month_table[c]
+    
+    print(f"Picked month: {month}")
     table = get_table(
         f'''
-    select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a natural join HAS_GROUP natural join EXPENSE e join USER
+    select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end 
+        from USER_HAS_GROUP_EXPENSE a natural join HAS_GROUP natural join EXPENSE e join USER
         u on e.creditor = u.user_id where MONTHNAME(expense_date) = \'{month}\' and a.user_id = \'{user}\';
             ''', header)
     
@@ -109,7 +123,13 @@ def get_expenses_in_a_month(user,month):
         print('No expenses for this month')
         
 
-def get_expenses_with_a_friend(user, friend):
+def get_expenses_with_a_friend(user):
+    
+    print_msg_box("Select a friend")
+    
+    friend_list = get_friends(user)
+    
+    c = choice(len(friend_list))
     
     header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
     
@@ -120,7 +140,7 @@ def get_expenses_with_a_friend(user, friend):
     JOIN USER c ON b.friend = c.user_id 
     JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
     natural join HAS_GROUP 
-    natural join EXPENSE e where c.user_name = \'{friend}\' and a.user_id = \'{user}\' order by e.expense_date desc;
+    natural join EXPENSE e where c.user_id= \'{friend_list.user_id[c]}\' and a.user_id = \'{user}\' order by e.expense_date desc;
         ''', header)
     
     if table.empty == False:
@@ -129,7 +149,11 @@ def get_expenses_with_a_friend(user, friend):
         print('No expenses for this friend')
         
         
-def get_expenses_with_a_group(user, group):
+def get_expenses_with_a_group(user):
+    
+    print_msg_box("Select a group")
+    
+    group_list = get_groups(user)
     
     header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
     
