@@ -160,18 +160,17 @@ def get_expenses_with_a_group(user):
     group_list = get_groups(user)
     c = choice(len(group_list))
     
-    header = ["User Name", "Date", "Amount", "Group Name", "Friend", "Friend Amount"]
+    header = ["Group Name", "Name", "Expense Date", "Amount", "Settled?"]
     
     table = get_table (
         f'''
-    SELECT a.user_name, e.expense_date, e.amount, group_name, c.user_name, x.amount as friend FROM USER a 
-    JOIN USER_FRIEND b ON a.user_id = b.user_id 
-    JOIN USER c ON b.friend = c.user_id 
-    JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
-    natural join HAS_GROUP 
-    natural join EXPENSE e
-    join USER_HAS_GROUP_EXPENSE f on c.user_id = f.user_id
-    join EXPENSE x on f.expense_id = x.expense_id where group_id = \'{group_list.group_id[c]}\' and a.user_id = \'{user}\'order by e.expense_date desc;
+    select group_name, user_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end 
+    from USER_HAS_GROUP_EXPENSE 
+    NATURAL JOIN EXPENSE 
+    NATURAL JOIN USER 
+    NATURAL JOIN HAS_GROUP 
+    where group_id = \'{group_list.group_id[c]}\'
+    ORDER BY group_id;
         ''', header)
     
     if table.empty == False:
