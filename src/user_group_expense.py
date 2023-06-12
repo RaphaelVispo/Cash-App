@@ -52,7 +52,7 @@ def add_user_group_expense(user):
     
 
     # for the creditor
-    print_msg_box("Add expsense to friends")
+    print_msg_box("Add expense to friends")
     expense_id = shortuuid.uuid()
 
     print("Add expense to yourself as creditor")

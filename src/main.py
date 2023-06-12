@@ -12,7 +12,6 @@ from utils import *
 picked = pick_user()
 user = picked["user_id"]
 name = picked["name"]
-print(f"user_id: {user} , name: {name}" )
 
 
 def add_Menu():
