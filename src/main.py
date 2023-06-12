@@ -31,7 +31,7 @@ def choose_Efg():
                 return efg_Choice
                 break;
             else:
-                print("Invalid entry. Please try again.")
+                print("Invalid entry. Please try again.\n")
         except:
             print("Invalid entry. Please try again.\n")
             continue
@@ -52,7 +52,7 @@ def choose_View():
             print("What would you like to view?")
 
             view_Choice = int(input("Your choice: "))
-            if view_Choice > 0 and view_Choice < 7:
+            if view_Choice > 0 and view_Choice < 8:
                 return view_Choice
                 break;
             else:
@@ -144,13 +144,15 @@ def action_Run():
             print("group balance")
         
     elif action == 0:
-        print("You have exited Cash-App. ")
+        print("You have exited Cash-App.")
         
         
-print("Welcome to Cash-App!!\n")        
+#print_msg_box(f"Welcome to Cash-App {name}!\n", indent=10)        
 main_Menu() 
 action_Run()
 while True:
     if action != 0:
         main_Menu()
         action_Run()
+    else:
+        break
