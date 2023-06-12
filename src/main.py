@@ -130,7 +130,6 @@ def action_Run():
     if action == 1:
         print("What would you like to add?\n")
         add_Menu()
-        #choose_Efg()
         if efg_Choice == 1:
             add_user_group_expense(user):
         elif efg_Choice == 2:
@@ -146,13 +145,14 @@ def action_Run():
         elif efg_Choice == 2:
             delete_friend(user)
         elif efg_Choice == 3:
-            print("delete friend from a group")
+            delete_group(id, name)
+            # NOT SURE ---------------------------------------------------
     
     elif action == 3:
         print("What would you like to search?\n")
         search_Update_Menu()
         if efg_Choice == 1:
-            print("search expense")
+            search_expense(user, expense)
         elif efg_Choice == 2:
             search_friend(user)
         elif efg_Choice == 3:
@@ -162,7 +162,7 @@ def action_Run():
         print("What would you like to update?\n")
         search_Update_Menu()
         if efg_Choice == 1:
-            print("update expense")
+            edit_expense(user)
         elif efg_Choice == 2:
             edit_friend(user)
         elif efg_Choice == 3:
@@ -181,9 +181,9 @@ def action_Run():
         elif view_Choice == 5:
             get_friends_with_outstanding_bal(user)
         elif view_Choice == 6:
-            print("all groups")
+            get_groups(user)
         elif view_Choice == 7:
-            print("group balance")
+            print("groups with outstanding balance")
         
     elif action == 0:
         print("You have exited Cash-App.")
