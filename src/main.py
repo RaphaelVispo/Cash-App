@@ -124,17 +124,17 @@ def action_Run():
         print("What would you like to add?\n")
         add_Menu()
         if efg_Choice == 1:
-            add_user_group_expense(user):
+            add_user_group_expense(user)
         elif efg_Choice == 2:
             add_friend(user)
         elif efg_Choice == 3:
-            add_user_expense(user)
+            add_expense_choice(user)
     
     elif action == 2:
         print("What would you like to delete?\n")
         delete_Menu()
         if efg_Choice == 1:
-            delete_user_group_expense(user):
+            delete_user_group_expense(user)
         elif efg_Choice == 2:
             delete_friend(user)
         elif efg_Choice == 3:

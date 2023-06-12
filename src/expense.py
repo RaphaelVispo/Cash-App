@@ -180,17 +180,28 @@ def get_expenses_with_a_group(user):
         
 def get_expenses_with_a_group_input(user,group):
     
-    header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
+    header = ["Group Name", "Name", "Expense Date", "Amount", "Settled?"]
+    
+    # table = get_table (
+    #     f'''
+    # SELECT a.user_name, e.expense_date, e.amount, group_name, c.user_name as friend FROM USER a 
+    # JOIN USER_FRIEND b ON a.user_id = b.user_id 
+    # JOIN USER c ON b.friend = c.user_id 
+    # JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
+    # natural join HAS_GROUP 
+    # natural join EXPENSE e 
+    # where group_id = \'{group}\' and a.user_id = \'{user}\'order by e.expense_date desc;
+    #     ''', header)
     
     table = get_table (
         f'''
-    SELECT a.user_name, e.expense_date, e.amount, group_name, c.user_name as friend FROM USER a 
-    JOIN USER_FRIEND b ON a.user_id = b.user_id 
-    JOIN USER c ON b.friend = c.user_id 
-    JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
-    natural join HAS_GROUP 
-    natural join EXPENSE e 
-    where group_id = \'{group}\' and a.user_id = \'{user}\'order by e.expense_date desc;
+    select group_name, user_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end 
+    from USER_HAS_GROUP_EXPENSE 
+    NATURAL JOIN EXPENSE 
+    NATURAL JOIN USER 
+    NATURAL JOIN HAS_GROUP 
+    where group_id = \'{group}\'
+    ORDER BY group_id;
         ''', header)
     
     if table.empty == False:
@@ -270,7 +281,7 @@ def edit_expense(user):
                 ''')
 
         print("Successfully edited the amount!")
-        search_expense(user, expense_list.expense_id[select])
+        search_expense(user)
         
         
     elif edit_type == 1:
@@ -280,7 +291,7 @@ def edit_expense(user):
             update EXPENSE set is_settled = {new_status} where expense_id = \'{expense_list.expense_id[select]}\';
                 ''')
         print("Successfully edited the status!")
-        search_expense(user, expense_list.expense_id[select])
+        search_expense(user)
         
 def delete_expense(expense):
         """
