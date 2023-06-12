@@ -5,6 +5,9 @@ from expense import *
 from group import *
 from user import *
 from friends import *
+from user_group_expense import *
+from utils import *
+
 
 picked = pick_user()
 user = picked["user_id"]
