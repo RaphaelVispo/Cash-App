@@ -100,40 +100,23 @@ def get_total_expenses(user):
     print_table(table, header, False)
     
     
-def get_expenses_in_a_month(user,month):
+def get_expenses_in_a_month(user):
     header = ["Group Name", "Date", "Amount", "Settled?"]
     
-    print_msg_box("Choose a month: 1: January, 2: February, 3: March, 4: April, 5: May, 6: June, 7: July, 8: August, 9: September, 10: October, 11: November, 12: December")
-    c=choice(12)
+    print_msg_box("Get expense in a month")
+    print_msg_box("Choose a month", indent=10)
+    month_table = [("January"), ("February"), ("March"), ("April"), ("May"), 
+                    ("June"), ("July"), ("August"), ("September"), ("October"), ("November"), ("December")]
+    print_table(pd.DataFrame(month_table), ["Month"])
+    c=choice(11)
+
+    month = month_table[c]
     
-    if c == 1:
-        month = "January"
-    elif c == 2:
-        month = "February"
-    elif c == 3:
-        month = "March"
-    elif c == 4:
-        month = "April"
-    elif c == 5:
-        month = "May"
-    elif c == 6:
-        month = "June"
-    elif c == 7:
-        month = "July"
-    elif c == 8:
-        month = "August"
-    elif c == 9:
-        month = "September"
-    elif c == 10:
-        month = "October"
-    elif c == 11:
-        month = "November"
-    elif c == 12:
-        month = "December"
-    
+    print(f"Picked month: {month}")
     table = get_table(
         f'''
-    select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a natural join HAS_GROUP natural join EXPENSE e join USER
+    select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end 
+        from USER_HAS_GROUP_EXPENSE a natural join HAS_GROUP natural join EXPENSE e join USER
         u on e.creditor = u.user_id where MONTHNAME(expense_date) = \'{month}\' and a.user_id = \'{user}\';
             ''', header)
     
@@ -143,7 +126,7 @@ def get_expenses_in_a_month(user,month):
         print('No expenses for this month')
         
 
-def get_expenses_with_a_friend(user, friend):
+def get_expenses_with_a_friend(user):
     
     print_msg_box("Select a friend")
     
@@ -169,7 +152,7 @@ def get_expenses_with_a_friend(user, friend):
         print('No expenses for this friend')
         
         
-def get_expenses_with_a_group(user, group):
+def get_expenses_with_a_group(user):
     
     print_msg_box("Select a group")
     
@@ -291,10 +274,8 @@ def delete_expense(expense):
     
 def add_expense(id, creditor, amount, settled):
 
-    new_expense_id = shortuuid.uuid()
-    
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{new_expense_id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
+            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
                 ''')
-    print("Added new expense:")  
+    print("Added new expense")  
