@@ -8,8 +8,14 @@ USER_FRIEND(user_id, friend)
 USER_HAS_GROUP_EXPENSE(user_id, group_id, expense_id)
 HAS_GROUP(group_id, group_name)
 EXPENSE(expense_id, creditor, amount, is_settled, expense_date)
-
 ```
+
+# Files 
+Folders
+1. `scipts` - the sql scripts
+    `local` - script for generating the database locally
+    `remote` - script for generating the database remote
+2. `src` - python scripts
 
 # Running App
 In running the app is separated by the remote and local database. But first installing the environment and the requirements
