@@ -218,7 +218,7 @@ def get_friends_with_outstanding_bal(user):
     else:
         print('No friends with outstanding balances')
         
-def search_expense(user, expense):
+def search_expense(user):
     header = ["Group Name", "Date", "Amount", "Settled?"]
     
     table = get_table (
@@ -280,7 +280,29 @@ def edit_expense (user):
         print("Successfully edited the status!")
         search_expense(user, expense_list.expense_id[select])
         
-def delete_expense(user):
+def delete_expense(expense):
+        """
+        delete_group
+            will delete expense from given id
+
+        params:
+            id - id of the group that will be deleted
+
+        """
+        execute_query(f'''
+        delete from EXPENSE where expense_id = \'{expense}\';
+                ''')
+        print("Deleted the expense!")
+        
+def add_expense(id, creditor, amount, settled):
+
+    execute_query(f'''
+        INSERT INTO EXPENSE
+            VALUES (\'{id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
+                ''')
+    print("Added new expense")  
+    
+def delete_expense_choice(user):
     """
     delete_group
         will delete expense from given id
@@ -303,7 +325,7 @@ def delete_expense(user):
     print("Deleted the expense!")
     get_expense(user)
     
-def add_expense(user):
+def add_expense_choice(user):
     
     group_list = get_groups(user)
     
