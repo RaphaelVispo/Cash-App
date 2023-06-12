@@ -221,12 +221,15 @@ def get_friends_with_outstanding_bal(user):
 def search_expense(user):
     header = ["Group Name", "Date", "Amount", "Settled?"]
     
+    expense_list = get_expense(user)
+    select = choice(len(expense_list.expense_id))
+    
     table = get_table (
         f'''
     select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a 
     natural join HAS_GROUP 
     natural join EXPENSE e 
-    join USER u on e.creditor = u.user_id and expense_id = \'{expense}\' and a.user_id = \'{user}\';
+    join USER u on e.creditor = u.user_id and expense_id = \'{expense_list.expense_id[select]}\' and a.user_id = \'{user}\';
         ''', header)
     
     if table.empty == False:
