@@ -1,4 +1,6 @@
 from utils import *
+from friends import *
+from group import *
 
 
 def get_unpaid_expenses(user):
@@ -97,6 +99,35 @@ def get_total_expenses(user):
     
 def get_expenses_in_a_month(user,month):
     header = ["Group Name", "Date", "Amount", "Settled?"]
+    
+    print_msg_box("Choose a month: 1: January, 2: February, 3: March, 4: April, 5: May, 6: June, 7: July, 8: August, 9: September, 10: October, 11: November, 12: December")
+    c=choice(12)
+    
+    if c == 1:
+        month = "January"
+    elif c == 2:
+        month = "February"
+    elif c == 3:
+        month = "March"
+    elif c == 4:
+        month = "April"
+    elif c == 5:
+        month = "May"
+    elif c == 6:
+        month = "June"
+    elif c == 7:
+        month = "July"
+    elif c == 8:
+        month = "August"
+    elif c == 9:
+        month = "September"
+    elif c == 10:
+        month = "October"
+    elif c == 11:
+        month = "November"
+    elif c == 12:
+        month = "December"
+    
     table = get_table(
         f'''
     select group_name, expense_date, amount, case when is_settled = 0 then 'No' else 'Yes' end from USER_HAS_GROUP_EXPENSE a natural join HAS_GROUP natural join EXPENSE e join USER
@@ -111,6 +142,12 @@ def get_expenses_in_a_month(user,month):
 
 def get_expenses_with_a_friend(user, friend):
     
+    print_msg_box("Select a friend")
+    
+    friend_list = get_friends(user)
+    
+    c = choice(len(friend_list))
+    
     header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
     
     table = get_table (
@@ -120,7 +157,7 @@ def get_expenses_with_a_friend(user, friend):
     JOIN USER c ON b.friend = c.user_id 
     JOIN USER_HAS_GROUP_EXPENSE d on a.user_id = d.user_id 
     natural join HAS_GROUP 
-    natural join EXPENSE e where c.user_name = \'{friend}\' and a.user_id = \'{user}\' order by e.expense_date desc;
+    natural join EXPENSE e where c.user_id= \'{friend_list.user_id[c]}\' and a.user_id = \'{user}\' order by e.expense_date desc;
         ''', header)
     
     if table.empty == False:
@@ -130,6 +167,10 @@ def get_expenses_with_a_friend(user, friend):
         
         
 def get_expenses_with_a_group(user, group):
+    
+    print_msg_box("Select a group")
+    
+    group_list = get_groups(user)
     
     header = ["User Name", "Date", "Amount", "Group Name", "Friend"]
     
@@ -249,6 +290,6 @@ def add_expense(id, creditor, amount, settled):
     
     execute_query(f'''
         INSERT INTO EXPENSE
-            VALUES (\'{new_expense_id}\', \'{creditor}\',{amount},{settled},{CURDATE()}) ;
+            VALUES (\'{new_expense_id}\', \'{creditor}\',{amount},{settled},CURDATE()) ;
                 ''')
     print("Added new expense:")  
