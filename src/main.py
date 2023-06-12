@@ -6,7 +6,10 @@ from group import *
 from user import *
 from friends import *
 
-user = "3xyaufSzzUp9LPkSKTxhqz"
+picked = pick_user()
+user = picked["user_id"]
+name = picked["name"]
+print(f"user_id: {user} , name: {name}" )
 
 get_unpaid_expenses(user)
 get_paid_expenses(user)
@@ -24,7 +27,7 @@ def add_Menu():
         try:
             print("[1] GROUP EXPENSE")
             print("[2] FRIEND")
-            print("[3] EXPENSE TO A GROUP")
+            print("[3] EXPENSE TO A GROUP\n")
 
             efg_Choice = int(input("Your choice: "))
             if efg_Choice > 0 and efg_Choice < 4:
@@ -43,7 +46,7 @@ def delete_Menu():
         try:
             print("[1] GROUP EXPENSE")
             print("[2] FRIEND")
-            print("[3] FRIEND FROM A GROUP")
+            print("[3] FRIEND FROM A GROUP\n")
 
             efg_Choice = int(input("Your choice: "))
             if efg_Choice > 0 and efg_Choice < 4:
@@ -62,7 +65,7 @@ def search_Update_Menu():
         try:
             print("[1] EXPENSE")
             print("[2] FRIEND")
-            print("[3] GROUP")
+            print("[3] GROUP\n")
 
             efg_Choice = int(input("Your choice: "))
             if efg_Choice > 0 and efg_Choice < 4:
@@ -86,8 +89,7 @@ def choose_View():
             print("[4] CURRENT BALANCE FROM ALL EXPENSES")
             print("[5] ALL FRIENDS WITH OUTSTANDING BALANCE")
             print("[6] ALL GROUPS")
-            print("[7] ALL GROUPS WITH OUTSTANDING BALANCE")
-            print("What would you like to view?")
+            print("[7] ALL GROUPS WITH OUTSTANDING BALANCE\n")
 
             view_Choice = int(input("Your choice: "))
             if view_Choice > 0 and view_Choice < 8:
