@@ -132,19 +132,19 @@ def action_Run():
         add_Menu()
         #choose_Efg()
         if efg_Choice == 1:
-            print("Add group expense")
+            add_user_group_expense(user):
         elif efg_Choice == 2:
-            print("Add friend")
+            add_friend(user)
         elif efg_Choice == 3:
-            print("Add expense to a group")
+            add_user_expense(user_id, group_id, expense_id)
     
     elif action == 2:
         print("What would you like to delete?\n")
         delete_Menu()
         if efg_Choice == 1:
-            print("delete group expense")
+            delete_user_group_expense(user):
         elif efg_Choice == 2:
-            print("delete friend")
+            delete_friend(user)
         elif efg_Choice == 3:
             print("delete friend from a group")
     
@@ -154,9 +154,9 @@ def action_Run():
         if efg_Choice == 1:
             print("search expense")
         elif efg_Choice == 2:
-            print("search friend")
+            search_friend(user)
         elif efg_Choice == 3:
-            print("search group")
+            search_group(user)
     
     elif action == 4:
         print("What would you like to update?\n")
@@ -164,22 +164,22 @@ def action_Run():
         if efg_Choice == 1:
             print("update expense")
         elif efg_Choice == 2:
-            print("update friend")
+            edit_friend(user)
         elif efg_Choice == 3:
-            print("update group")
+            edit_group(user)
     
     elif action == 5:
         choose_View()
         if view_Choice == 1:
-            print("expense month")
+            get_expenses_in_a_month(user)
         elif view_Choice == 2:
-            print("expense friend")
+             get_expenses_with_a_friend(user)
         elif view_Choice == 3:
-            print("expense group")
+            get_expenses_with_a_group(user)
         elif view_Choice == 4:
-            print("expense balance")
+            get_total_unpaid_expenses(user)
         elif view_Choice == 5:
-            print("friend balance")
+            get_friends_with_outstanding_bal(user)
         elif view_Choice == 6:
             print("all groups")
         elif view_Choice == 7:
