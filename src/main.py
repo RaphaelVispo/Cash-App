@@ -18,7 +18,45 @@ get_username(user)
 get_groups(user)
 
 
-def choose_Efg():
+def add_Menu():
+    global efg_Choice
+    while True:
+        try:
+            print("[1] GROUP EXPENSE")
+            print("[2] FRIEND")
+            print("[3] EXPENSE TO A GROUP")
+
+            efg_Choice = int(input("Your choice: "))
+            if efg_Choice > 0 and efg_Choice < 4:
+                return efg_Choice
+                break;
+            else:
+                print("Invalid entry. Please try again.\n")
+        except:
+            print("Invalid entry. Please try again.\n")
+            continue
+
+
+def delete_Menu():
+    global efg_Choice
+    while True:
+        try:
+            print("[1] GROUP EXPENSE")
+            print("[2] FRIEND")
+            print("[3] FRIEND FROM A GROUP")
+
+            efg_Choice = int(input("Your choice: "))
+            if efg_Choice > 0 and efg_Choice < 4:
+                return efg_Choice
+                break;
+            else:
+                print("Invalid entry. Please try again.\n")
+        except:
+            print("Invalid entry. Please try again.\n")
+            continue
+        
+            
+def search_Update_Menu():
     global efg_Choice
     while True:
         try:
@@ -35,8 +73,8 @@ def choose_Efg():
         except:
             print("Invalid entry. Please try again.\n")
             continue
-            
-            
+        
+
 def choose_View():
     global view_Choice
     while True:
@@ -66,13 +104,14 @@ def main_Menu():
     global action
     while True:
         try:
+            print("What would you like to do?")
             print("[1] ADD")
             print("[2] DELETE")
             print("[3] SEARCH")
             print("[4] UPDATE")
             print("[5] VIEW")
             print("[0] EXIT CASH-APP\n")
-            action = int(input("What would you like to do? "))
+            action = int(input("Your choice: "))
         
             if action >= 0 and action <= 5:
                 return action
@@ -88,27 +127,28 @@ def main_Menu():
 def action_Run():
     if action == 1:
         print("What would you like to add?\n")
-        choose_Efg()
+        add_Menu()
+        #choose_Efg()
         if efg_Choice == 1:
-            print("Add expense")
+            print("Add group expense")
         elif efg_Choice == 2:
             print("Add friend")
         elif efg_Choice == 3:
-            print("Add group")
+            print("Add expense to a group")
     
     elif action == 2:
         print("What would you like to delete?\n")
-        choose_Efg()
+        delete_Menu()
         if efg_Choice == 1:
-            print("delete expense")
+            print("delete group expense")
         elif efg_Choice == 2:
             print("delete friend")
         elif efg_Choice == 3:
-            print("delete group")
+            print("delete friend from a group")
     
     elif action == 3:
         print("What would you like to search?\n")
-        choose_Efg()
+        search_Update_Menu()
         if efg_Choice == 1:
             print("search expense")
         elif efg_Choice == 2:
@@ -118,7 +158,7 @@ def action_Run():
     
     elif action == 4:
         print("What would you like to update?\n")
-        choose_Efg()
+        search_Update_Menu()
         if efg_Choice == 1:
             print("update expense")
         elif efg_Choice == 2:
@@ -147,11 +187,12 @@ def action_Run():
         print("You have exited Cash-App.")
         
         
-#print_msg_box(f"Welcome to Cash-App {name}!\n", indent=10)        
+print_msg_box(f"Welcome to Cash-App {name}!\n", indent=10)        
 main_Menu() 
 action_Run()
 while True:
     if action != 0:
+        print("\n----------------------------------------------------")
         main_Menu()
         action_Run()
     else:
