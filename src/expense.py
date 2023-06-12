@@ -83,7 +83,7 @@ def get_total_unpaid_expenses(user):
     print_table(table, header, False)
 
 
-def get_total_expenses(user):
+def get_total_expenses(user): #get all expenses
 
     header = ["Total"]
 
@@ -101,7 +101,7 @@ def get_total_expenses(user):
     print_table(table, header, False)
     
     
-def get_expenses_in_a_month(user):
+def get_expenses_in_a_month(user): #get all expenses in a month
     header = ["Group Name", "Date", "Amount", "Settled?"]
     
     print_msg_box("Get expense in a month")
@@ -127,7 +127,7 @@ def get_expenses_in_a_month(user):
         print('No expenses for this month')
         
 
-def get_expenses_with_a_friend(user):
+def get_expenses_with_a_friend(user): #get all expenses with a friend
     
     print_msg_box("Select a friend")
     
@@ -153,7 +153,7 @@ def get_expenses_with_a_friend(user):
         print('No expenses for this friend')
         
         
-def get_expenses_with_a_group(user):
+def get_expenses_with_a_group(user): #get all expenses with a specified group
     
     print_msg_box("Select a group")
     
@@ -178,7 +178,7 @@ def get_expenses_with_a_group(user):
     else:
         print('No expenses yet for this group')
         
-def get_expenses_with_a_group_input(user,group):
+def get_expenses_with_a_group_input(user,group): #get all expenses with a specified group (for using in a function)
     
     header = ["Group Name", "Name", "Expense Date", "Amount", "Settled?"]
     
@@ -209,7 +209,7 @@ def get_expenses_with_a_group_input(user,group):
     else:
         print('No expenses for this group')
         
-def get_friends_with_outstanding_bal(user):
+def get_friends_with_outstanding_bal(user): #get friends with balances that are not settled
     
     header = ["User Name", "Friend"]
     
@@ -228,7 +228,7 @@ def get_friends_with_outstanding_bal(user):
     else:
         print('No friends with outstanding balances')
         
-def search_expense(user):
+def search_expense(user): # search a specific expense
     header = ["Group Name", "Date", "Amount", "Settled?"]
     
     expense_list = get_expense(user)
@@ -248,7 +248,7 @@ def search_expense(user):
         print('Error! Expense not found!')
         
         
-def get_expense(user):
+def get_expense(user): # get all expenses of user
     header = ["Group Name", "expense_id", "Date", "Amount", "Settled?"]
     print_msg_box("Edit Expense")
     
@@ -260,11 +260,14 @@ def get_expense(user):
     join USER u on e.creditor = u.user_id and a.user_id = \'{user}\';
     ''', header
     )
-    print_table(table,header)
+    clean_table = table.drop(columns='expense_id', axis=1)
+    header.remove("expense_id")
+    print_table(clean_table, header)
+
     
     return table
 
-def edit_expense(user):
+def edit_expense(user): # edit an existing expense
     
     expense_list = get_expense(user);
     select = choice(len(expense_list.expense_id))
@@ -293,7 +296,7 @@ def edit_expense(user):
         print("Successfully edited the status!")
         search_expense(user)
         
-def delete_expense(expense):
+def delete_expense(expense): # delete an exisitng expense (functions)
         """
         delete_group
             will delete expense from given id
@@ -307,7 +310,7 @@ def delete_expense(expense):
                 ''')
         print("Deleted the expense!")
         
-def add_expense(id, creditor, amount, settled):
+def add_expense(id, creditor, amount, settled): #add a new expense (for functions)
 
     execute_query(f'''
         INSERT INTO EXPENSE
@@ -315,7 +318,7 @@ def add_expense(id, creditor, amount, settled):
                 ''')
     print("Added new expense")  
     
-def delete_expense_choice(user):
+def delete_expense_choice(user): # delete an expense from a group
     """
     delete_group
         will delete expense from given id
@@ -338,7 +341,7 @@ def delete_expense_choice(user):
     print("Deleted the expense!")
     get_expense(user)
     
-def add_expense_choice(user):
+def add_expense_choice(user): # add a new expense to a group
     
     group_list = get_groups(user)
     
